@@ -36,6 +36,7 @@ if(Meteor.isClient) {
   });
 
   Template.task.events({
+    // handle click event on object with .toggle-checked class
     "click .toggle-checked": function () {
       Tasks.update(this._id, {
         $set: {checked: ! this.checked}
@@ -56,3 +57,7 @@ if(Meteor.isClient) {
 if(Meteor.isServer) {
 
 }
+
+// Before deploy we must: meteor remove insecure
+// This is the package that allows us to edit the database from the client.
+// It's useful when prototyping, but now we are taking off the training wheels
