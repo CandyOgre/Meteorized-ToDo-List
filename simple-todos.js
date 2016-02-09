@@ -22,12 +22,9 @@ if(Meteor.isClient) {
     'submit .new-task': function(event) {
       event.preventDefault();
       var text = event.target.text.value;
-      Tasks.insert({
-        text: text,
-        createdAt: new Date(),
-        owner: Meteor.userId(),
-        username: Meteor.user().username
-      });
+      
+      Meteor.call('addTask', text);
+
       event.target.text.value = '';
     },
     'change .hide-completed input': function (event) {
@@ -38,12 +35,10 @@ if(Meteor.isClient) {
   Template.task.events({
     // handle click event on object with .toggle-checked class
     "click .toggle-checked": function () {
-      Tasks.update(this._id, {
-        $set: {checked: ! this.checked}
-      });
+      Meteor.call('setChecked', this._id, ! this.checked);
     },
     "click .delete": function () {
-      Tasks.remove(this._id);
+      Meteor.call('deleteTask', this._id);
     }
   });
 
