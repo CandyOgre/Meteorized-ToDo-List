@@ -1,6 +1,7 @@
 Tasks = new Mongo.Collection('tasks');
 
 if(Meteor.isClient) {
+  Meteor.subscribe('tasks');
   
   Template.body.helpers({
     tasks: function() { 
@@ -70,9 +71,14 @@ Meteor.methods({
 });
 
 if(Meteor.isServer) {
-
+  Meteor.publish('tasks', function() {
+    return Tasks.find();
+  });
 }
 
 // Before deploy we must: meteor remove insecure
 // This is the package that allows us to edit the database from the client.
 // It's useful when prototyping, but now we are taking off the training wheels
+
+// meteor remove autopublish
+// By default Meteor sends all data to client. Need to handle this
