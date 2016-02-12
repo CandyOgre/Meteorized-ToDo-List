@@ -15,7 +15,6 @@
     	<!-- meteor add accounts-ui accounts-password -->
     	<!-- Template from packages -->
     	{{> loginButtons}}
-
     	<!-- currentUser we getting from Meteor, buit-in field ? -->
     	{{#if currentUser}}
     	<form class="new-task">
@@ -23,7 +22,6 @@
     	</form>
     	{{/if}}
     </header>
-
     <ul>
     <!-- helper in js file, returns a collection of finded tasks -->
     {{#each tasks}}
@@ -32,23 +30,3 @@
     </ul>
   </div>
 </body>
-
-<template name="task">
-  <li class="{{#if checked}}checked{{/if}} {{#if private}}private{{/if}}">
-  	<button class="delete">&times;</button>
-
-  	<input type="checkbox" checked="{{checked}}" class="toggle-checked" />
-    
-    {{#if isOwner}}
-      <button class="toggle-private">
-      	{{#if private}}
-      	  Private
-      	{{else}}
-      	  Public
-      	{{/if}}
-      </button>
-    {{/if}}
-
-  	<span class="text"><strong>{{username}}</strong> - {{text}}</span>
-  </li>
-</template>
