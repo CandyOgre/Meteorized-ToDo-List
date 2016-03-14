@@ -5,7 +5,6 @@
   });
 
   Template.task.events({
-    // handle click event on object with .toggle-checked class
     "click .toggle-checked": function () {
       Meteor.call('setChecked', this._id, ! this.checked);
     },
