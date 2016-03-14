@@ -12,10 +12,8 @@
     	  Hide Completed Tasks
     	</label>
 
-    	<!-- meteor add accounts-ui accounts-password -->
-    	<!-- Template from packages -->
     	{{> loginButtons}}
-    	<!-- currentUser we getting from Meteor, buit-in field ? -->
+
     	{{#if currentUser}}
     	<form class="new-task">
     	  <input type="text" name="text" placeholder="Type to add new tasks" />
