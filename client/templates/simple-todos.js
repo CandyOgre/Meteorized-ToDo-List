@@ -28,7 +28,7 @@ Template.body.events({
 
     e.target.text.value = '';
   },
-  
+  // 'change .hide-completed' works equal. Any differences ?
   'change .hide-completed input': function (e) {
     Session.set('hideCompleted', e.target.checked);
   }
