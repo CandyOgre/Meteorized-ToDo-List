@@ -1,4 +1,5 @@
-if(Tasks.find().count() === 0) {
+Meteor.startup(function() {
+  if(Tasks.find().count() === 0) {
     Tasks.insert({
       text: 'Take out the trash',
       createdAt: new Date(),
@@ -23,5 +24,5 @@ if(Tasks.find().count() === 0) {
       private: false,
       checked: false
     });
-
-}
+  }
+});
