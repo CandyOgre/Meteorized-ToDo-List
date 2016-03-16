@@ -1,29 +1,56 @@
 <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Todo List</title>
 </head>
 
 <body>
-  <div class="container">
-    <header>
-    	<h1>Todo List({{incompleteCount}})</h1>
+    
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    <img alt="Brand" width="30px" higth="30x" src="../images/brand.png">
+                </a>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">To Do List ({{incompleteCount}})</a>
+            </div>
 
-    	<label class="hide-completed">
-    	  <input type="checkbox" checked="{{hideCompleted}}" />
-    	  Hide Completed Tasks
-    	</label>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                {{#if currentUser}}
+                <form class="new-task navbar-form navbar-left" role="search">
+                    <div class="form-group">
+                        <input type="text" name="text" class="form-control" placeholder="Type to add new tasks">
+                    </div>
+                    <div class="checkbox navbar-btn">
+                        <label class="hide-completed navbar-link">
+                            <input type="checkbox" checked="{{hideCompleted}}">
+                            Hide Completed Tasks
+                        </label>
+                    </div>
+                </form>
+                {{/if}}
+                <ul class="nav navbar-nav navbar-right">
+                    {{> loginButtons}}
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
 
-    	{{> loginButtons}}
+    <div class="container">
+        <ul class="list-unstyled">
+            {{#each tasks}}
+              {{> task}}
+            {{/each}}
+        </ul>
+    </div>
 
-    	{{#if currentUser}}
-    	<form class="new-task">
-    	  <input type="text" name="text" placeholder="Type to add new tasks" />
-    	</form>
-    	{{/if}}
-    </header>
-    <ul>
-    {{#each tasks}}
-      {{> task}}
-    {{/each}}
-    </ul>
-  </div>
 </body>

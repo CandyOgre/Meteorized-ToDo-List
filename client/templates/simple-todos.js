@@ -8,11 +8,9 @@ Template.body.helpers({
       return Tasks.find({}, {sort: {createdAt: -1}});
     }
   },
-
   hideCompleted: function () {
     return Session.get('hideCompleted');
   },
-
   incompleteCount: function() {
     return Tasks.find({checked: {$ne: true}}).count();
   } 
@@ -22,10 +20,9 @@ Template.body.helpers({
 Template.body.events({
   'submit .new-task': function(e) {
     e.preventDefault();
-    var text = e.target.text.value;
     
+    var text = e.target.text.value;
     Meteor.call('addTask', text);
-
     e.target.text.value = '';
   },
   // 'change .hide-completed' works equal. Any differences ?
@@ -33,7 +30,3 @@ Template.body.events({
     Session.set('hideCompleted', e.target.checked);
   }
 });
-
-
-
-
