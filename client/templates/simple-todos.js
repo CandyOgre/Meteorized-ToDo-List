@@ -1,4 +1,6 @@
-Meteor.subscribe('tasks');
+Template.body.onCreated(function(){
+  this.subscribe('tasks');
+});
 
 Template.body.helpers({
   tasks: function() {
