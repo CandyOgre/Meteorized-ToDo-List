@@ -9,6 +9,10 @@ Template.body.helpers({
       } else if(Session.get('hideCompleted')) {
         return Tasks.find({checked: {$ne: true}}, {sort: {createdAt: -1}});
       } else if(Session.get('ownerFirst')) {
+        var pipeline = [
+          {$match: { owner: Meteor.userId()} },
+          {sort: {createdAt: -1} }
+        ];
       // return Tasks.find({}, {sort: { {$elemMatch: {owner: Meteor.userId()} }, {createdAt: -1} } });
     } else {
       return Tasks.find({}, {sort: {createdAt: -1}});
