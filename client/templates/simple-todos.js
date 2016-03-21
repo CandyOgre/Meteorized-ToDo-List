@@ -12,6 +12,7 @@ Template.body.helpers({
         return Meteor.call('getSortedTasks');
         
     } else {
+      console.log(Tasks.find({}, {sort: {createdAt: -1}}));
       return Tasks.find({}, {sort: {createdAt: -1}});
     }
   },
