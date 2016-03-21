@@ -5,15 +5,12 @@ Template.body.onCreated(function(){
 Template.body.helpers({
   tasks: function() {
     if(Session.get('hideCompleted') && Session.get('ownerFirst')) {
-        // return Tasks.find({owner: Meteor.userId(), checked: {$ne: true}}, {sort: {createdAt: -1}});  
       } else if(Session.get('hideCompleted')) {
         return Tasks.find({checked: {$ne: true}}, {sort: {createdAt: -1}});
       } else if(Session.get('ownerFirst')) {
-        var pipeline = [
-          {$match: { owner: Meteor.userId()} },
-          {sort: {createdAt: -1} }
-        ];
-      // return Tasks.find({}, {sort: { {$elemMatch: {owner: Meteor.userId()} }, {createdAt: -1} } });
+
+        return Meteor.call('getSortedTasks');
+        
     } else {
       return Tasks.find({}, {sort: {createdAt: -1}});
     }
