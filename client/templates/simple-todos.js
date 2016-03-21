@@ -9,10 +9,9 @@ Template.body.helpers({
         return Tasks.find({checked: {$ne: true}}, {sort: {createdAt: -1}});
       } else if(Session.get('ownerFirst')) {
 
-        return Meteor.call('getSortedTasks');
+        return ReactiveMethod.call('getSortedTasks');
         
     } else {
-      console.log(Tasks.find({}, {sort: {createdAt: -1}}));
       return Tasks.find({}, {sort: {createdAt: -1}});
     }
   },

@@ -20,3 +20,4 @@ accounts-password
 twbs:bootstrap
 ian:accounts-ui-bootstrap-3
 meteorhacks:aggregate
+simple:reactive-method
