@@ -16,7 +16,6 @@ Meteor.methods({
       {text:1, createdAt:1, owner:1, username:1, private:1, checked:1}
     } 
     ];
-    // console.log(Tasks.aggregate(pipeline, {explain: true}));
     return Tasks.aggregate(pipeline);
   },
 });

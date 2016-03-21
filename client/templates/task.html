@@ -2,8 +2,6 @@
   <li class="{{#if checked}}checked{{/if}} {{#if private}}private{{/if}} col-sm-4">
     <button type="button" class="delete close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
-  	<input type="checkbox" checked="{{checked}}" class="toggle-checked" id="checked" />
-
     {{#if isOwner}}
       <button class="toggle-private btn btn-sm {{#if private}}btn-primary{{else}}btn-default{{/if}}">
         {{#if private}}
@@ -14,7 +12,8 @@
       </button>
     {{/if}}
 
-   <label for="checked">
+   <label>
+    <input type="checkbox" checked="{{checked}}" class="toggle-checked"/>
      <span class="text" style="font-weight:normal;"><strong>{{username}}</strong> - {{text}}</span>
    </label>
  </li>
