@@ -1,18 +1,10 @@
 {
   "name": "Meteorized-ToDo-List",
-  "version": "0.5.0",
-  "description": "In this project I will realize TODO APP from official Meteor tutorials and will try to add my unique features!",
-  "main": "index.js",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "meteor run"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/CandyOgre/Meteorized-ToDo-List.git"
-  },
-  "author": "",
-  "license": "BSD-2-Clause",
-  "bugs": {
-    "url": "https://github.com/CandyOgre/Meteorized-ToDo-List/issues"
+  "dependencies": {
+    "meteor-node-stubs": "~0.2.0"
   }
 }
