@@ -5,6 +5,7 @@ Template.body.onCreated(function(){
 Template.body.helpers({
   tasks: function() {
     if(Session.get('hideCompleted') && Session.get('ownerFirst')) {
+      alert('Use only one option, please');
       } else if(Session.get('hideCompleted')) {
         return Tasks.find({checked: {$ne: true}}, {sort: {createdAt: -1}});
       } else if(Session.get('ownerFirst')) {
