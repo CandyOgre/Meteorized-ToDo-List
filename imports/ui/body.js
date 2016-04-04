@@ -9,6 +9,7 @@ import './body.html';
 
 Template.body.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
+  Meteor.subscribe('tasks');
 });
 
 Template.body.helpers({
@@ -31,12 +32,8 @@ Template.body.events({
   'submit .new-task'(e) {
     e.preventDefault();
 
-    Tasks.insert({
-      text: e.target.text.value,
-      createdAt: new Date(),
-      owner: Meteor.userId(),
-      username: Meteor.user().username,
-    });
+    const text = target.text.value;
+    Meteor.call('tasks.insert', text);
 
     e.target.text.value = "";
   },
