@@ -32,7 +32,7 @@ Template.body.events({
   'submit .new-task'(e) {
     e.preventDefault();
 
-    const text = target.text.value;
+    const text = e.target.text.value;
     Meteor.call('tasks.insert', text);
 
     e.target.text.value = "";
