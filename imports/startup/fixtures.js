@@ -3,7 +3,8 @@ import { Meteor } from 'meteor/meteor';
 import { Tasks } from '../api/tasks.js';
 
 Meteor.startup(() => {
-  Tasks.insert({
+  if(Tasks.find().count() === 0) {
+    Tasks.insert({
       text: 'Take out the trash',
       createdAt: new Date(),
       owner: null,
@@ -27,6 +28,7 @@ Meteor.startup(() => {
       private: false,
       checked: false
     });
+  }
 });
 
 
