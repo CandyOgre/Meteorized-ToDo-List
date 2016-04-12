@@ -15,14 +15,24 @@ Template.body.onCreated(function bodyOnCreated() {
 Template.body.helpers({
   tasks() {
     const instance = Template.instance();
-    if (instance.state.get('hideCompleted')) {
-      // If hide completed is checked, filter tasks
-      return Tasks.find({ checked: { $ne: true } }, { sort: { createdAt: -1 } });
-    }
-    // Otherwise, return all of the tasks
-    return Tasks.find({}, { sort: { createdAt: -1 } });
-  },
+    if(instance.state.get('hideCompleted') && instance.state.get('ownerFirst')) {
+      alert('Use only one option, please');
+      } else if(instance.state.get('hideCompleted')) {
+        return Tasks.find({checked: {$ne: true}}, {sort: {createdAt: -1}});
+      } else if(instance.state.get('ownerFirst')) {
 
+        return ReactiveMethod.call('getSortedTasks');
+
+    } else {
+      return Tasks.find({}, {sort: {createdAt: -1}});
+    }
+  },
+  hideCompleted() {
+    return Template.instance().state.get('hideCompleted');
+  },
+  ownerFirst() {
+    return Template.instance().state.get('ownerFirst');
+  },
   incompleteCount() {
     return Tasks.find({ checked: { $ne: true } }).count();
   },
@@ -39,5 +49,8 @@ Template.body.events({
   },
   'change .hide-completed input'(e, instance) {
     instance.state.set('hideCompleted', e.target.checked);
+  },
+  'change .owner-first'(e, instance) {
+    instance.state.set('ownerFirst', e.target.checked);
   },
 });

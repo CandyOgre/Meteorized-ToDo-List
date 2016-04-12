@@ -15,6 +15,27 @@ if (Meteor.isServer) {
       ],
     });
   });
+  Meteor.methods({
+    getSortedTasks() {
+    var pipeline = [
+    // project a field showing if current user is owner
+    {$project:
+      {text:1, createdAt:1, owner:1, username:1, private:1, checked:1, current:
+        {$eq: ["$username", Meteor.userId()]}
+      }
+    },
+    // Sort stage: Brings documents on top with current = true
+    {$sort:
+      {current:-1}
+    },
+    // Remove field name 'current' induced in first stage
+    {$project:
+      {text:1, createdAt:1, owner:1, username:1, private:1, checked:1}
+    }
+    ];
+    return Tasks.aggregate(pipeline);
+  },
+});
 }
 
 Meteor.methods({
@@ -31,6 +52,8 @@ Meteor.methods({
       createdAt: new Date(),
       owner: Meteor.userId(),
       username: Meteor.user().username,
+      private: false,
+      checked: false
     });
   },
   'tasks.remove'(taskId) {
