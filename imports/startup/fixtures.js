@@ -1,4 +1,8 @@
-Meteor.startup(function() {
+import { Meteor } from 'meteor/meteor';
+
+import { Tasks } from '../api/tasks.js';
+
+Meteor.startup(() => {
   if(Tasks.find().count() === 0) {
     Tasks.insert({
       text: 'Take out the trash',
