@@ -1,7 +1,9 @@
 import { Meteor } from 'meteor/meteor';
 
-import { Tasks } from '../api/tasks.js';
+import { Tasks } from '/imports/api/tasks.js';
 
+// Here we define basic data for our `tasks` collection
+// when it's empty
 Meteor.startup(() => {
   if(Tasks.find().count() === 0) {
     Tasks.insert({
